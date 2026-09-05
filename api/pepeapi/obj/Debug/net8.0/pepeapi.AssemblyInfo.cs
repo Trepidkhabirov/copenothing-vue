@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pepeapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c9861e767d071167328e84a8da4135dbd8e1015")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab2676fd18f7f8da99b59a024b84f2828737645f")]
 [assembly: System.Reflection.AssemblyProductAttribute("pepeapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pepeapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
