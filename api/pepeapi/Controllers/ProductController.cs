@@ -10,10 +10,18 @@ public class ProductController : ControllerBase
     {
         var db = new FrogbdContext();
         var products = db.Products.ToList();
+        if (products == null)
+        {
+            return BadRequest( new { message = "Нет продуктов"});
+        }
+        else
+        {
         return Ok(
             products
-        );
+        );  
+        }
     }
+
     [HttpPost("product/addproduct")]
     public IActionResult addProduct(Product product)
     {

@@ -49,7 +49,7 @@ public class UserController : ControllerBase
             {
 
             return Ok(new { message = "Вы успешно авторизованы!",
-                 userId = user.Iduser,
+            userId = user.Iduser,
             name = user.Name,
             surname = user.Surname,
             patronomic = user.Patronomic,
@@ -63,7 +63,7 @@ public class UserController : ControllerBase
             return Unauthorized( new { message = "Ошибка авторизации"});
         }
     }
-    [HttpPut("auth/delete")]
+    [HttpPut("profile/delete")]
     public IActionResult DeleteUser(User user)
     {
         var db= new FrogbdContext();
@@ -76,7 +76,7 @@ public class UserController : ControllerBase
         db.SaveChanges();
         return Ok(new { message = "Пользователь удалён!"});
     }
-    [HttpPut("auth/edit")]
+    [HttpPut("profile/edit")]
     public IActionResult EditUser(User user)
     {
         var db= new FrogbdContext();
