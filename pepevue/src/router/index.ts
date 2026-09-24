@@ -4,6 +4,8 @@ import authorization from '@/auth/authorization.vue'
 import register  from '@/auth/register.vue'
 import  profile  from '@/profile/profile.vue'
 import mainmenu from '@/mainmenu/mainmenu.vue'
+import Catalog from '@/catalog/catalog.vue'
+import Korzina from '@/korzina/korzina.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +30,14 @@ const router = createRouter({
     {
       path: '/mainmenu',
       component: mainmenu
+    },
+    {
+      path: '/catalog',
+      component: Catalog
+    },
+    {
+      path: '/korzina',
+      component: Korzina
     }
   ]
 })
