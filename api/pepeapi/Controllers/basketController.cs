@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pepeapi.Model;
@@ -6,16 +7,39 @@ using pepeapi.Model;
 public class BasketController : ControllerBase
 {
     [HttpGet("product/showbasket")]
-    public IActionResult getBasket()
+    public IActionResult getBasket(int UserId)
     {
         var db = new FrogbdContext();
-        var baskets = db.Baskets.ToList();
+        var baskets = db.Baskets.Where(p => UserId == p.UserId).ToList();
         if (baskets == null)
         {
             return BadRequest( new { message = "Нет продуктов"});
         }
         else
-        {
+        { // цена количество товара названеи
+        var prod = db.Products.ToList();
+            foreach(var p in prod)
+            {
+                foreach(var b in baskets)
+                {
+                if (p.Idproduct == b.ProductId)
+                    {
+
+                        return Ok(new {
+                            baskets,
+                            p.Idproduct,
+                            p.Title,
+                            p.Image,
+                            p.Description,
+                            p.Cost,
+                            p.Count,
+                            p.CategoryId,
+                            p.Status
+                            });
+                    
+                    }
+                }
+            }
         return Ok(
             baskets
         );  
@@ -26,12 +50,12 @@ public class BasketController : ControllerBase
     {
         var db = new FrogbdContext();
                var product = db.Products.FirstOrDefault(p => p.Idproduct == ProductId);
-               if (product == null)
+        if (product == null)
         {
             return BadRequest("Товар не найден!");
         }
-               var user = db.Users.FirstOrDefault(u => u.Iduser == UserId);
-               if (user == null)
+        var user = db.Users.FirstOrDefault(u => u.Iduser == UserId);
+        if (user == null)
         {
             return BadRequest("Пользователь не найден!");
         }
@@ -42,15 +66,15 @@ public class BasketController : ControllerBase
             db.SaveChanges();
             return Ok(new
             {
-                message = "Добавлен в корзину!",
-                UserId = UserId,
+              message = "Добавлен в корзину!",
+              UserId = UserId,
               ProductId = ProductId,
               Count = basket.Count,
               Title = product.Title,
               Image = product.Image,
               Cost =  product.Cost  
             });
-        }
+         }
             var newbasket = new Basket
             {
               UserId = UserId,
